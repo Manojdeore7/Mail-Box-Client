@@ -1,21 +1,30 @@
-import logo from "./logo.svg";
-import "./App.css";
 import "../node_modules/react-bootstrap/dist/react-bootstrap";
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
-import { Button } from "react-bootstrap";
+import { Button, Navbar, Nav, Container } from "react-bootstrap";
+import "./App.css";
+
+import { Route, Switch } from "react-router-dom";
+import AuthPage from "./Components/AuthPage";
+
+import { useContext } from "react";
+import AuthContext from "./store/AuthContext";
+import Header from "./Components/Header";
+import { Redirect } from "react-router-dom";
+
 function App() {
+  let context = useContext(AuthContext);
+  let login = context.isLoggedIn;
   return (
-    <>
-      <Button variant="primary">Primary</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="success">Success</Button>
-      <Button variant="warning">Warning</Button>
-      <Button variant="danger">Danger</Button>
-      <Button variant="info">Info</Button>
-      <Button variant="light">Light</Button>
-      <Button variant="dark">Dark</Button>
-      <Button variant="link">Link</Button>
-    </>
+    <div className=" App">
+      <Header />
+      <Switch>
+        {!login && (
+          <Route path="/">
+            <AuthPage />
+          </Route>
+        )}
+      </Switch>
+    </div>
   );
 }
 
