@@ -34,9 +34,9 @@ function SignUp(props) {
               ref={props.cPasswordRef}
             />
           </Form.Group>
-          <Button variant="primary" size="md" type="submit">
+          <Form.Control as={Button} variant="primary" size="md" type="submit">
             Submit
-          </Button>
+          </Form.Control>
         </Form>
       </Card.Body>
     </Card>

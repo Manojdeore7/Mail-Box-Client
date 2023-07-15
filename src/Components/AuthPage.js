@@ -2,6 +2,7 @@ import React, { useRef, useContext, useState } from "react";
 import AuthContext from "../store/AuthContext";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
+import { Form, Button } from "react-bootstrap";
 
 function AuthPage() {
   let emailRef = useRef("");
@@ -80,10 +81,17 @@ function AuthPage() {
       )}
       <br></br>
       <div>
-        <button className="btn btn-danger" onClick={changeHandler}>
+        <Form.Control
+          as={Button}
+          variant="danger"
+          style={{ width: "20rem" }}
+          className="btn btn-danger"
+          onClick={changeHandler}
+          type="submit"
+        >
           {!signIn && "Have an Acount ?LogIn"}
           {signIn && "Don't have an acount ?SignUp"}
-        </button>
+        </Form.Control>
       </div>
     </div>
   );

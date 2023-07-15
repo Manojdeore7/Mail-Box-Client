@@ -6,7 +6,7 @@ function LogIn(props) {
       <Card.Body>
         <Form onSubmit={props.submitHandler}>
           <Container className="m-3">
-            <h4>SignIn</h4>
+            <h4>LogIn</h4>
           </Container>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
@@ -26,9 +26,9 @@ function LogIn(props) {
             />
           </Form.Group>
 
-          <Button variant="primary" size="md" type="submit">
+          <Form.Control as={Button} variant="primary" size="md" type="submit">
             Submit
-          </Button>
+          </Form.Control>
         </Form>
       </Card.Body>
     </Card>
