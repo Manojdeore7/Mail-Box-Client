@@ -1,8 +1,15 @@
 import { useState } from "react";
-import { Form, Button, Card, Container } from "react-bootstrap";
+import { Form, Button, Card, Container, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
 function LogIn(props) {
   return (
-    <Card style={{ width: "20rem", marginTop: "5rem", marginRight: "10rem" }}>
+    <Card
+      style={{
+        width: "20rem",
+        marginTop: "5rem",
+        marginRight: "10rem",
+      }}
+    >
       <Card.Body>
         <Form onSubmit={props.submitHandler}>
           <Container className="m-3">
@@ -30,6 +37,9 @@ function LogIn(props) {
             Submit
           </Form.Control>
         </Form>
+        <Container className="mt-2">
+          <Link>Forgot Password</Link>
+        </Container>
       </Card.Body>
     </Card>
   );

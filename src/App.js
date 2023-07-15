@@ -21,7 +21,7 @@ function App() {
       <Header />
       <Switch>
         {!login && (
-          <Route path="/">
+          <Route path="/" exact>
             <AuthPage />
           </Route>
         )}

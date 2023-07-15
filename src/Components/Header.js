@@ -5,6 +5,9 @@ import { Button, Navbar, Nav, Container } from "react-bootstrap";
 function Header() {
   let context = useContext(AuthContext);
   let login = context.isLoggedIn;
+  function clickHandler() {
+    context.logOut();
+  }
 
   return (
     <div className="row">
@@ -27,7 +30,11 @@ function Header() {
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
-          {login && <Button variant="danger">LogOut</Button>}
+          {login && (
+            <Button variant="danger" onClick={clickHandler}>
+              LogOut
+            </Button>
+          )}
         </Container>
       </Navbar>
     </div>
