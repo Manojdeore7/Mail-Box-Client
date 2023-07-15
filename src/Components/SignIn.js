@@ -1,33 +1,37 @@
 import { useState } from "react";
-import { Form } from "react-bootstrap";
+import { Form, Button, Card, Container } from "react-bootstrap";
 function LogIn(props) {
   return (
-    <>
-      <form className="row " onSubmit={props.submitHandler}>
-        <div className="col-12">
-          <h1>SignIn</h1>
-        </div>
-        <label className="label">Email</label>
-        <input
-          type="email"
-          className="form-control"
-          ref={props.emailRef}
-        ></input>
-        <label>Password</label>
-        <input
-          type="password"
-          className="form-control"
-          ref={props.passwordRef}
-        ></input>
-        <br></br>
-        <button onClick={props.clickHandler} className="btn btn-primary">
-          Do you forgot your Password?
-        </button>
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </form>
-    </>
+    <Card style={{ width: "20rem", marginTop: "5rem", marginRight: "10rem" }}>
+      <Card.Body>
+        <Form onSubmit={props.submitHandler}>
+          <Container className="m-3">
+            <h4>SignIn</h4>
+          </Container>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              ref={props.emailRef}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              ref={props.passwordRef}
+            />
+          </Form.Group>
+
+          <Button variant="primary" size="md" type="submit">
+            Submit
+          </Button>
+        </Form>
+      </Card.Body>
+    </Card>
   );
 }
 export default LogIn;

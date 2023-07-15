@@ -1,8 +1,10 @@
 import "../node_modules/react-bootstrap/dist/react-bootstrap";
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
-import { Button, Navbar, Nav, Container } from "react-bootstrap";
-import "./App.css";
 
+import "./App.css";
+import Home from "./Components/Home";
+import AboutUs from "./Components/AboutUs";
+import Products from "./Components/Products";
 import { Route, Switch } from "react-router-dom";
 import AuthPage from "./Components/AuthPage";
 
@@ -21,6 +23,21 @@ function App() {
         {!login && (
           <Route path="/">
             <AuthPage />
+          </Route>
+        )}
+        {login && (
+          <Route path="/" exact>
+            <Home />
+          </Route>
+        )}
+        {login && (
+          <Route path="/Products">
+            <Products />
+          </Route>
+        )}
+        {login && (
+          <Route path="/AboutUs">
+            <AboutUs />
           </Route>
         )}
       </Switch>
