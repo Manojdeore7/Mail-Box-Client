@@ -13,7 +13,7 @@ function Header() {
     <div className="row">
       <Navbar expand="lg" className="bg-body-tertiary">
         <Container>
-          <Navbar.Brand as={Link} to="./">
+          <Navbar.Brand as={Link} to="./" style={{ color: "blue" }}>
             MyWebLink
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

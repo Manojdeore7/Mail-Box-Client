@@ -1,6 +1,6 @@
 import "../node_modules/react-bootstrap/dist/react-bootstrap";
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
-
+import "../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "./App.css";
 import Home from "./Components/Home";
 import AboutUs from "./Components/AboutUs";
