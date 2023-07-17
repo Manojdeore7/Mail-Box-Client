@@ -7,6 +7,7 @@ import emailjs from "@emailjs/browser";
 import AuthContext from "../store/AuthContext";
 
 let ID;
+let email;
 function Home() {
   let [editorState, setEditorState] = useState(EditorState.createEmpty());
   let onEditorStateChange = () => {
@@ -14,29 +15,13 @@ function Home() {
   };
   let context = useContext(AuthContext);
   let token = context.Token;
+  ID = context.ID;
+  email = context.email;
   const form = useRef();
   const emaill = useRef();
   const subject = useRef();
   const message = useRef();
-  let funGet = async () => {
-    let res1 = await fetch(
-      "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyAgl36Y2mjDOhSlZShpe33Xk4fWzEhi6TE",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          idToken: token,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    let data1 = await res1.json();
-    ID = data1.users[0].localId;
-  };
-  useEffect(() => {
-    funGet();
-  }, []);
+
   function submitHandler(e) {
     e.preventDefault();
 
@@ -61,10 +46,10 @@ function Home() {
               }),
             }
           );
-          if (response.ok) {
-            alert("data is added in firebase");
+          if (response.status == 200) {
+            context.getData();
           } else {
-            throw new Error("Error occur in sending data to firebase");
+            throw new Error("Error occur in store data in database");
           }
         } else {
           throw new Error("Error occur in sending mail");
@@ -86,6 +71,13 @@ function Home() {
       />
       <Form ref={form} onSubmit={submitHandler}>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form.Label>From</Form.Label>
+          <Form.Control
+            type="email"
+            value={email}
+            name="sender_email"
+            disabled
+          />
           <Form.Label>To</Form.Label>
           <Form.Control
             type="email"

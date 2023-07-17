@@ -25,6 +25,11 @@ function App() {
             <AuthPage />
           </Route>
         )}
+        {!login && (
+          <Route path="/*">
+            <Redirect to="./"></Redirect>
+          </Route>
+        )}
         {login && (
           <Route path="/" exact>
             <Home />
