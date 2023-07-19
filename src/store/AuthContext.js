@@ -7,6 +7,8 @@ let AuthContext = React.createContext({
   ID: "",
   email: "",
   array: [],
+  arr: [],
   getData: () => {},
+  getDataOfSingleEmail: () => {},
 });
 export default AuthContext;

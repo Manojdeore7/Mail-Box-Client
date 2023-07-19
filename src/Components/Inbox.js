@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import AuthContext from "../store/AuthContext";
 import { Table } from "react-bootstrap";
-import { Container } from "react-bootstrap";
+import { Container, Nav } from "react-bootstrap";
+import { Link, Router } from "react-router-dom";
 let ID;
 function Inbox() {
   let context = useContext(AuthContext);
@@ -10,6 +11,7 @@ function Inbox() {
   array = array.filter((e) => {
     return e.to === email;
   });
+
   console.log(array);
   return (
     <Container>
@@ -25,12 +27,19 @@ function Inbox() {
         <tbody>
           {array.map((e, i) => {
             return (
-              <tr>
+              <Nav.Link
+                as={Link}
+                to={"./Inbox/Message"}
+                style={{ display: "table-row" }}
+                onClick={() => {
+                  context.getDataOfSingleEmail(e.from, e.subject, e.message);
+                }}
+              >
                 <td>{i}</td>
-                <td>{e.to}</td>
+                <td>{e.from}</td>
                 <td>{e.subject}</td>
                 <td>{e.message}</td>
-              </tr>
+              </Nav.Link>
             );
           })}
         </tbody>

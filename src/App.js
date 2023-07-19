@@ -13,6 +13,7 @@ import { useContext } from "react";
 import AuthContext from "./store/AuthContext";
 import Header from "./Components/Header";
 import { Redirect } from "react-router-dom";
+import Message from "./Components/Message";
 
 function App() {
   let context = useContext(AuthContext);
@@ -37,8 +38,13 @@ function App() {
           </Route>
         )}
         {login && (
-          <Route path="/Inbox">
+          <Route path="/Inbox" exact>
             <Inbox />
+          </Route>
+        )}
+        {login && (
+          <Route path="/Inbox/Message">
+            <Message />
           </Route>
         )}
         {login && (

@@ -27,10 +27,10 @@ function AuthPage() {
     let url;
     if (signIn) {
       url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAgl36Y2mjDOhSlZShpe33Xk4fWzEhi6TE";
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDpF4EV9Rf0fIb8ugGwavpNHHVDKCFDDjw";
     } else {
       url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAgl36Y2mjDOhSlZShpe33Xk4fWzEhi6TE";
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDpF4EV9Rf0fIb8ugGwavpNHHVDKCFDDjw";
     }
 
     fetch(url, {

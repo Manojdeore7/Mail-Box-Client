@@ -5,13 +5,18 @@ let v = true;
 function AuthProvider(props) {
   let [Token, setToken] = useState(null);
   let [array, setArray] = useState([]);
+  let [arr, setArr] = useState([]);
   let [ID, setID] = useState("");
   let [email, setEmail] = useState("");
+
   let userLoggedIn = !!Token;
 
   let loggedInHandeler = (token) => {
     v = true;
     setToken(token);
+  };
+  let emailHandler = (email, subject, message) => {
+    setArr([email, subject, message]);
   };
   let loggedOutHandeler = () => {
     setToken(null);
@@ -19,7 +24,7 @@ function AuthProvider(props) {
   let funGet = async () => {
     try {
       let res1 = await fetch(
-        "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyAgl36Y2mjDOhSlZShpe33Xk4fWzEhi6TE",
+        "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyDpF4EV9Rf0fIb8ugGwavpNHHVDKCFDDjw",
         {
           method: "POST",
           body: JSON.stringify({
@@ -68,9 +73,11 @@ function AuthProvider(props) {
     login: loggedInHandeler,
     logOut: loggedOutHandeler,
     ID: ID,
+    arr: arr,
     email: email,
     array: array,
     getData: fun,
+    getDataOfSingleEmail: emailHandler,
   };
   return (
     <AuthContext.Provider value={context}>
