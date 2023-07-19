@@ -22,8 +22,11 @@ function Header() {
               <Nav.Link as={Link} to="./">
                 Home
               </Nav.Link>
-              <Nav.Link as={Link} to="./Products">
+              <Nav.Link as={Link} to="./Inbox">
                 Inbox
+              </Nav.Link>
+              <Nav.Link as={Link} to="./Sent">
+                Sent
               </Nav.Link>
               <Nav.Link as={Link} to="./AboutUs">
                 AboutUs

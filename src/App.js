@@ -4,7 +4,8 @@ import "../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "./App.css";
 import Home from "./Components/Home";
 import AboutUs from "./Components/AboutUs";
-import Products from "./Components/Products";
+import Inbox from "./Components/Inbox";
+import Sent from "./Components/Sent";
 import { Route, Switch } from "react-router-dom";
 import AuthPage from "./Components/AuthPage";
 
@@ -36,8 +37,13 @@ function App() {
           </Route>
         )}
         {login && (
-          <Route path="/Products">
-            <Products />
+          <Route path="/Inbox">
+            <Inbox />
+          </Route>
+        )}
+        {login && (
+          <Route path="/Sent">
+            <Sent />
           </Route>
         )}
         {login && (

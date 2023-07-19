@@ -45,7 +45,7 @@ function AuthProvider(props) {
   let fun = async () => {
     array = [];
     let response = await fetch(
-      `https://mail-client-box-a2837-default-rtdb.firebaseio.com/${ID}.json`
+      `https://mail-client-box-a2837-default-rtdb.firebaseio.com/emailData.json`
     );
     if (!response.ok) {
       throw new Error("fetching data is failed!");

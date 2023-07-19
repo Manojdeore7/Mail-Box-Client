@@ -18,7 +18,8 @@ function Home() {
   ID = context.ID;
   email = context.email;
   const form = useRef();
-  const emaill = useRef();
+  const from = useRef();
+  const to = useRef();
   const subject = useRef();
   const message = useRef();
 
@@ -27,32 +28,23 @@ function Home() {
 
     let fun = async () => {
       try {
-        let res = await emailjs.sendForm(
-          "service_60vcqc5",
-          "template_5alcesr",
-          form.current,
-          "lIX3KdCxMHXRVMWPZ"
-        );
-        if (res.status === 200) {
-          alert("email is sent");
-          let response = await fetch(
-            `https://mail-client-box-a2837-default-rtdb.firebaseio.com/${ID}.json`,
-            {
-              method: "POST",
-              body: JSON.stringify({
-                email: emaill.current.value,
-                subject: subject.current.value,
-                message: message.current.value,
-              }),
-            }
-          );
-          if (response.status == 200) {
-            context.getData();
-          } else {
-            throw new Error("Error occur in store data in database");
+        let response = await fetch(
+          `https://mail-client-box-a2837-default-rtdb.firebaseio.com/emailData.json`,
+          {
+            method: "POST",
+            body: JSON.stringify({
+              from: from.current.value,
+              to: to.current.value,
+              subject: subject.current.value,
+              message: message.current.value,
+            }),
           }
+        );
+        if (response.status == 200) {
+          alert("email sent successfully");
+          context.getData();
         } else {
-          throw new Error("Error occur in sending mail");
+          throw new Error("Error occur in store data in database");
         }
       } catch (error) {
         alert(error.message);
@@ -77,13 +69,14 @@ function Home() {
             value={email}
             name="sender_email"
             disabled
+            ref={from}
           />
           <Form.Label>To</Form.Label>
           <Form.Control
             type="email"
             name="receiver_email"
             placeholder="name@example.com"
-            ref={emaill}
+            ref={to}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">

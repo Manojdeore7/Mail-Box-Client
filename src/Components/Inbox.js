@@ -3,9 +3,13 @@ import AuthContext from "../store/AuthContext";
 import { Table } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 let ID;
-function Products() {
+function Inbox() {
   let context = useContext(AuthContext);
+  let email = context.email;
   let array = context.array;
+  array = array.filter((e) => {
+    return e.to === email;
+  });
   console.log(array);
   return (
     <Container>
@@ -23,7 +27,7 @@ function Products() {
             return (
               <tr>
                 <td>{i}</td>
-                <td>{e.email}</td>
+                <td>{e.to}</td>
                 <td>{e.subject}</td>
                 <td>{e.message}</td>
               </tr>
@@ -35,4 +39,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default Inbox;
