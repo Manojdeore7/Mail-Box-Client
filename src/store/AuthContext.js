@@ -10,5 +10,6 @@ let AuthContext = React.createContext({
   arr: [],
   getData: () => {},
   getDataOfSingleEmail: () => {},
+  daleteSingleEmail: () => {},
 });
 export default AuthContext;

@@ -21,6 +21,12 @@ function AuthProvider(props) {
   let loggedOutHandeler = () => {
     setToken(null);
   };
+  let deleteClickHandler = (key) => {
+    array = array.filter((e) => {
+      return e.key !== key;
+    });
+    setArray(array);
+  };
   let funGet = async () => {
     try {
       let res1 = await fetch(
@@ -57,7 +63,7 @@ function AuthProvider(props) {
     }
     let data = await response.json();
     for (let key in data) {
-      array.push(data[key]);
+      array.push({ key, ...data[key] });
     }
     setArray(array);
   };
@@ -78,6 +84,7 @@ function AuthProvider(props) {
     array: array,
     getData: fun,
     getDataOfSingleEmail: emailHandler,
+    daleteSingleEmail: deleteClickHandler,
   };
   return (
     <AuthContext.Provider value={context}>

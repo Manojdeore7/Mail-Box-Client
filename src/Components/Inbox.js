@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import AuthContext from "../store/AuthContext";
 import { Table } from "react-bootstrap";
-import { Container, Nav } from "react-bootstrap";
+import { Container, Nav, Button } from "react-bootstrap";
 import { Link, Router } from "react-router-dom";
 let ID;
 function Inbox() {
@@ -15,31 +15,49 @@ function Inbox() {
   console.log(array);
   return (
     <Container>
-      <Table striped bordered hover>
+      <Table bordered hover>
         <thead>
           <tr>
             <th>#</th>
             <th>email</th>
             <th>subject</th>
             <th>message</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           {array.map((e, i) => {
             return (
-              <Nav.Link
-                as={Link}
-                to={"./Inbox/Message"}
-                style={{ display: "table-row" }}
-                onClick={() => {
-                  context.getDataOfSingleEmail(e.from, e.subject, e.message);
-                }}
-              >
+              <tr>
                 <td>{i}</td>
-                <td>{e.from}</td>
+                <td>
+                  <Nav.Link
+                    as={Link}
+                    to={"./Inbox/Message"}
+                    onClick={() => {
+                      context.getDataOfSingleEmail(
+                        e.from,
+                        e.subject,
+                        e.message
+                      );
+                    }}
+                  >
+                    {e.from}
+                  </Nav.Link>
+                </td>
                 <td>{e.subject}</td>
                 <td>{e.message}</td>
-              </Nav.Link>
+                <td>
+                  <Button
+                    variant="danger"
+                    onClick={() => {
+                      context.daleteSingleEmail(e.key);
+                    }}
+                  >
+                    Delete
+                  </Button>
+                </td>
+              </tr>
             );
           })}
         </tbody>
