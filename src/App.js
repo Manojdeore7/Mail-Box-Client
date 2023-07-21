@@ -29,7 +29,7 @@ function App() {
         )}
         {!login && (
           <Route path="/*">
-            <Redirect to="./"></Redirect>
+            <Redirect to="/"></Redirect>
           </Route>
         )}
         {login && (
@@ -43,7 +43,7 @@ function App() {
           </Route>
         )}
         {login && (
-          <Route path="/Inbox/Message">
+          <Route path="*/Message*">
             <Message />
           </Route>
         )}

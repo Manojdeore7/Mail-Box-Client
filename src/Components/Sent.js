@@ -1,12 +1,16 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import AuthContext from "../store/AuthContext";
 import { Table } from "react-bootstrap";
-import { Container, Button } from "react-bootstrap";
+import { Container, Button, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
 let ID;
 function Sent() {
   let context = useContext(AuthContext);
+  let [value, setValue] = useState(false);
   let email = context.email;
+
   let array = context.array;
+
   array = array.filter((e) => {
     return e.from === email;
   });
@@ -20,15 +24,32 @@ function Sent() {
             <th>email</th>
             <th>subject</th>
             <th>message</th>
-            <th></th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
           {array.map((e, i) => {
+            value = e.isVisible.value;
             return (
               <tr>
-                <td>{i}</td>
-                <td>{e.to}</td>
+                <td style={{ display: "flex", gap: "20px" }}>
+                  <h4>{i + 1}</h4>
+                  {value && <h4>#</h4>}
+                </td>
+                <td>
+                  <Nav.Link
+                    as={Link}
+                    to={`/Sent/Message${e.key}`}
+                    onClick={() => {
+                      context.getDataOfSingleEmail(e.to, e.subject, e.message);
+                      context.isVisible(e.key);
+                      e.isVisible.value = false;
+                      setValue(false);
+                    }}
+                  >
+                    {e.to}
+                  </Nav.Link>
+                </td>
                 <td>{e.subject}</td>
                 <td>{e.message}</td>
                 <td>

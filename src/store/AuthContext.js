@@ -8,6 +8,7 @@ let AuthContext = React.createContext({
   email: "",
   array: [],
   arr: [],
+  isVisible: () => {},
   getData: () => {},
   getDataOfSingleEmail: () => {},
   daleteSingleEmail: () => {},

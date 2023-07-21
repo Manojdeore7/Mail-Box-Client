@@ -3,7 +3,7 @@ import { Editor } from "react-draft-wysiwyg";
 import { useRef } from "react";
 import { EditorState } from "draft-js";
 import { Container, Form, Button } from "react-bootstrap";
-import emailjs from "@emailjs/browser";
+
 import AuthContext from "../store/AuthContext";
 
 let ID;
@@ -17,6 +17,7 @@ function Home() {
   let token = context.Token;
   ID = context.ID;
   email = context.email;
+
   const form = useRef();
   const from = useRef();
   const to = useRef();
@@ -37,6 +38,7 @@ function Home() {
               to: to.current.value,
               subject: subject.current.value,
               message: message.current.value,
+              isVisible: { value: true },
             }),
           }
         );
@@ -54,13 +56,8 @@ function Home() {
   }
   return (
     <Container>
-      <Editor
-        editorState={editorState}
-        toolbarClassName="toolbarClassName"
-        wrapperClassName="wrapperClassName"
-        editorClassName="editorClassName"
-        onEditorStateChange={onEditorStateChange}
-      />
+      <Editor />
+
       <Form ref={form} onSubmit={submitHandler}>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>From</Form.Label>
@@ -85,7 +82,12 @@ function Home() {
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
           <Form.Label>Compose Email</Form.Label>
-          <Form.Control as="textarea" name="message" rows={5} ref={message} />
+          <Form.Control
+            as="textarea"
+            name="message"
+            rows={5}
+            ref={message}
+          ></Form.Control>
         </Form.Group>
         <Button type="submit" varient="primary">
           Send

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 let v = true;
 function AuthProvider(props) {
   let [Token, setToken] = useState(null);
+
   let [array, setArray] = useState([]);
   let [arr, setArr] = useState([]);
   let [ID, setID] = useState("");
@@ -26,6 +27,15 @@ function AuthProvider(props) {
       return e.key !== key;
     });
     setArray(array);
+  };
+  let isVisibleClickHandler = async (key) => {
+    let response = await fetch(
+      `https://mail-client-box-a2837-default-rtdb.firebaseio.com/emailData/${key}/isVisible.json`,
+      {
+        method: "PATCH",
+        body: JSON.stringify({ value: false }),
+      }
+    );
   };
   let funGet = async () => {
     try {
@@ -53,15 +63,12 @@ function AuthProvider(props) {
     }
   };
 
-  let fun = async () => {
+  let Fun = async () => {
     array = [];
-    let response = await fetch(
+    let respnse = await fetch(
       `https://mail-client-box-a2837-default-rtdb.firebaseio.com/emailData.json`
     );
-    if (!response.ok) {
-      throw new Error("fetching data is failed!");
-    }
-    let data = await response.json();
+    let data = await respnse.json();
     for (let key in data) {
       array.push({ key, ...data[key] });
     }
@@ -70,7 +77,7 @@ function AuthProvider(props) {
 
   useEffect(() => {
     funGet();
-    fun();
+    Fun();
   }, [Token]);
 
   let context = {
@@ -82,7 +89,8 @@ function AuthProvider(props) {
     arr: arr,
     email: email,
     array: array,
-    getData: fun,
+    isVisible: isVisibleClickHandler,
+    getData: Fun,
     getDataOfSingleEmail: emailHandler,
     daleteSingleEmail: deleteClickHandler,
   };
