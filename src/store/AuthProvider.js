@@ -22,11 +22,17 @@ function AuthProvider(props) {
   let loggedOutHandeler = () => {
     setToken(null);
   };
-  let deleteClickHandler = (key) => {
-    array = array.filter((e) => {
-      return e.key !== key;
-    });
-    setArray(array);
+  let deleteClickHandler = async (key) => {
+    // array = array.filter((e) => {
+    //   return e.key !== key;
+    // });
+    // setArray(array);
+    let response = await fetch(
+      `https://mail-client-box-a2837-default-rtdb.firebaseio.com/emailData/${key}.json`,
+      {
+        method: "DELETE",
+      }
+    );
   };
   let isVisibleClickHandler = async (key) => {
     let response = await fetch(
@@ -77,7 +83,9 @@ function AuthProvider(props) {
 
   useEffect(() => {
     funGet();
-    Fun();
+    setInterval(() => {
+      Fun();
+    }, 2000);
   }, [Token]);
 
   let context = {

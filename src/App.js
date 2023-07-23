@@ -52,11 +52,6 @@ function App() {
             <Sent />
           </Route>
         )}
-        {login && (
-          <Route path="/AboutUs">
-            <AboutUs />
-          </Route>
-        )}
       </Switch>
     </div>
   );

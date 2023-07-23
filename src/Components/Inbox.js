@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import AuthContext from "../store/AuthContext";
 import { Table } from "react-bootstrap";
 import { Container, Nav, Button } from "react-bootstrap";
-import { Link, Router } from "react-router-dom";
+import { Link, Router, BrowserRouter } from "react-router-dom";
 let ID;
 function Inbox() {
   let context = useContext(AuthContext);
@@ -12,7 +12,7 @@ function Inbox() {
 
   let [value, setValue] = useState(true);
 
-  array = array.filter((e) => {
+  let array1 = array.filter((e) => {
     return e.to === email;
   });
   return (
@@ -28,7 +28,7 @@ function Inbox() {
           </tr>
         </thead>
         <tbody>
-          {array.map((e, i) => {
+          {array1.map((e, i) => {
             value = e.isVisible.value;
             return (
               <tr>
@@ -37,21 +37,24 @@ function Inbox() {
                   {value && <h4>#</h4>}
                 </td>
                 <td>
-                  <Nav.Link
-                    as={Link}
-                    to={`/Inbox/Message${e.key}`}
-                    onClick={() => {
-                      context.getDataOfSingleEmail(
-                        e.from,
-                        e.subject,
-                        e.message
-                      );
-                      e.isVisible.value = false;
-                      setValue(false);
-                    }}
-                  >
-                    {e.from}
-                  </Nav.Link>
+                  <Nav>
+                    <Nav.Link
+                      as={Link}
+                      to={`/Inbox/Message${e.key}`}
+                      onClick={() => {
+                        context.getDataOfSingleEmail(
+                          e.from,
+                          e.subject,
+                          e.message
+                        );
+                        e.isVisible.value = false;
+                        context.isVisible(e.key);
+                        setValue(false);
+                      }}
+                    >
+                      {e.from}
+                    </Nav.Link>
+                  </Nav>
                 </td>
                 <td>{e.subject}</td>
                 <td>{e.message}</td>

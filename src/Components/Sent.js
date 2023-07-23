@@ -3,6 +3,7 @@ import AuthContext from "../store/AuthContext";
 import { Table } from "react-bootstrap";
 import { Container, Button, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom/cjs/react-router-dom.min";
 let ID;
 function Sent() {
   let context = useContext(AuthContext);
@@ -11,7 +12,7 @@ function Sent() {
 
   let array = context.array;
 
-  array = array.filter((e) => {
+  let array1 = array.filter((e) => {
     return e.from === email;
   });
   console.log(array);
@@ -28,7 +29,7 @@ function Sent() {
           </tr>
         </thead>
         <tbody>
-          {array.map((e, i) => {
+          {array1.map((e, i) => {
             value = e.isVisible.value;
             return (
               <tr>
@@ -37,18 +38,24 @@ function Sent() {
                   {value && <h4>#</h4>}
                 </td>
                 <td>
-                  <Nav.Link
-                    as={Link}
-                    to={`/Sent/Message${e.key}`}
-                    onClick={() => {
-                      context.getDataOfSingleEmail(e.to, e.subject, e.message);
-                      context.isVisible(e.key);
-                      e.isVisible.value = false;
-                      setValue(false);
-                    }}
-                  >
-                    {e.to}
-                  </Nav.Link>
+                  <Nav>
+                    <Nav.Link
+                      as={Link}
+                      to={`/Sent/Message${e.key}`}
+                      onClick={() => {
+                        context.getDataOfSingleEmail(
+                          e.to,
+                          e.subject,
+                          e.message
+                        );
+                        context.isVisible(e.key);
+                        e.isVisible.value = false;
+                        setValue(false);
+                      }}
+                    >
+                      {e.to}
+                    </Nav.Link>
+                  </Nav>
                 </td>
                 <td>{e.subject}</td>
                 <td>{e.message}</td>

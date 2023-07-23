@@ -1,19 +1,19 @@
 import { render, screen } from "@testing-library/react";
-import SignIn from "./SignIn";
-describe("suit for signIn", () => {
+import Sent from "./Sent";
+describe("suit for Sent", () => {
   test("renders learn react link", () => {
-    render(<SignIn />);
-    const Element = screen.getByText("LogIn");
+    render(<Sent />);
+    const Element = screen.getByText("email");
     expect(Element).toBeInTheDocument();
   });
   test("renders learn react link", () => {
-    render(<SignIn />);
-    const Element = screen.getByText("Email address");
+    render(<Sent />);
+    const Element = screen.getByText("subject");
     expect(Element).toBeInTheDocument();
   });
   test("renders learn react link", () => {
-    render(<SignIn />);
-    const Element = screen.getByText("Submit");
+    render(<Sent />);
+    const Element = screen.getByText("message");
     expect(Element).toBeInTheDocument();
   });
 });

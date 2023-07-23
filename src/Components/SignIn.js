@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Form, Button, Card, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom/cjs/react-router-dom.min";
 function LogIn(props) {
   return (
     <Card
@@ -38,7 +39,9 @@ function LogIn(props) {
           </Form.Control>
         </Form>
         <Container className="mt-2">
-          <Link>Forgot Password</Link>
+          <BrowserRouter>
+            <Link>Forgot Password</Link>
+          </BrowserRouter>
         </Container>
       </Card.Body>
     </Card>

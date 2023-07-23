@@ -1,9 +1,21 @@
 import { Link } from "react-router-dom";
 import AuthContext from "../store/AuthContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Button, Navbar, Nav, Container } from "react-bootstrap";
+import { BrowserRouter } from "react-router-dom";
 function Header() {
   let context = useContext(AuthContext);
+
+  let array = context.array;
+  let email = context.email;
+
+  let value = array.reduce((acc, e) => {
+    if (e.to === email && e.isVisible.value === true) {
+      acc++;
+    }
+    return acc;
+  }, 0);
+  let v = value;
   let login = context.isLoggedIn;
   function clickHandler() {
     context.logOut();
@@ -23,13 +35,10 @@ function Header() {
                 Home
               </Nav.Link>
               <Nav.Link as={Link} to="/Inbox">
-                Inbox
+                Inbox {login && v}
               </Nav.Link>
               <Nav.Link as={Link} to="/Sent">
                 Sent
-              </Nav.Link>
-              <Nav.Link as={Link} to="/AboutUs">
-                AboutUs
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
