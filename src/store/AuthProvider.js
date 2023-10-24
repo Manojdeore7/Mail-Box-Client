@@ -21,7 +21,7 @@ function AuthProvider(props) {
     setToken(null);
   };
   let deleteClickHandler = async (key) => {
-    let response = await fetch(
+    await fetch(
       `https://authenticate-app-70c08-default-rtdb.firebaseio.com/Data/${key}.json`,
       {
         method: "DELETE",

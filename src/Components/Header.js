@@ -15,7 +15,7 @@ function Header() {
     }
     return acc;
   }, 0);
-  let v = value;
+
   let login = context.isLoggedIn;
   function clickHandler() {
     context.logOut();
