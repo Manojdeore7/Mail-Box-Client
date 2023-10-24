@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import AuthContext from "../store/AuthContext";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Button, Navbar, Nav, Container } from "react-bootstrap";
-import { BrowserRouter } from "react-router-dom";
+
 function Header() {
   let context = useContext(AuthContext);
 
@@ -35,7 +35,7 @@ function Header() {
                 Home
               </Nav.Link>
               <Nav.Link as={Link} to="/Inbox">
-                Inbox {login && v}
+                Inbox {login && value}
               </Nav.Link>
               <Nav.Link as={Link} to="/Sent">
                 Sent

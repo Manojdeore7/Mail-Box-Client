@@ -1,7 +1,6 @@
 import AuthContext from "./AuthContext";
 import { useState, useEffect } from "react";
 
-let v = true;
 function AuthProvider(props) {
   let [Token, setToken] = useState(null);
 
@@ -13,7 +12,6 @@ function AuthProvider(props) {
   let userLoggedIn = !!Token;
 
   let loggedInHandeler = (token) => {
-    v = true;
     setToken(token);
   };
   let emailHandler = (email, subject, message) => {
@@ -23,20 +21,16 @@ function AuthProvider(props) {
     setToken(null);
   };
   let deleteClickHandler = async (key) => {
-    // array = array.filter((e) => {
-    //   return e.key !== key;
-    // });
-    // setArray(array);
     let response = await fetch(
-      `https://mail-client-box-a2837-default-rtdb.firebaseio.com/emailData/${key}.json`,
+      `https://authenticate-app-70c08-default-rtdb.firebaseio.com/Data/${key}.json`,
       {
         method: "DELETE",
       }
     );
   };
   let isVisibleClickHandler = async (key) => {
-    let response = await fetch(
-      `https://mail-client-box-a2837-default-rtdb.firebaseio.com/emailData/${key}/isVisible.json`,
+    await fetch(
+      `https://authenticate-app-70c08-default-rtdb.firebaseio.com/Data/${key}/isVisible.json`,
       {
         method: "PATCH",
         body: JSON.stringify({ value: false }),
@@ -72,7 +66,7 @@ function AuthProvider(props) {
   let Fun = async () => {
     array = [];
     let respnse = await fetch(
-      `https://mail-client-box-a2837-default-rtdb.firebaseio.com/emailData.json`
+      `https://authenticate-app-70c08-default-rtdb.firebaseio.com/Data.json`
     );
     let data = await respnse.json();
     for (let key in data) {

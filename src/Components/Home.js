@@ -1,21 +1,15 @@
-import { useContext, useEffect, useState } from "react";
-import { Editor } from "react-draft-wysiwyg";
+import { useContext } from "react";
+
 import { useRef } from "react";
-import { EditorState } from "draft-js";
+
 import { Container, Form, Button } from "react-bootstrap";
 
 import AuthContext from "../store/AuthContext";
 
-let ID;
 let email;
 function Home() {
-  let [editorState, setEditorState] = useState(EditorState.createEmpty());
-  let onEditorStateChange = () => {
-    setEditorState({ editorState });
-  };
   let context = useContext(AuthContext);
-  let token = context.Token;
-  ID = context.ID;
+
   email = context.email;
 
   const form = useRef();
@@ -30,7 +24,7 @@ function Home() {
     let fun = async () => {
       try {
         let response = await fetch(
-          `https://mail-client-box-a2837-default-rtdb.firebaseio.com/emailData.json`,
+          `https://authenticate-app-70c08-default-rtdb.firebaseio.com/Data.json`,
           {
             method: "POST",
             body: JSON.stringify({
@@ -42,7 +36,7 @@ function Home() {
             }),
           }
         );
-        if (response.status == 200) {
+        if (response.status === 200) {
           alert("email sent successfully");
           context.getData();
         } else {
@@ -56,7 +50,8 @@ function Home() {
   }
   return (
     <Container>
-      <Editor />
+      <br></br>
+      <br></br>
 
       <Form ref={form} onSubmit={submitHandler}>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">

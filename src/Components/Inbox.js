@@ -2,8 +2,8 @@ import { useContext, useState } from "react";
 import AuthContext from "../store/AuthContext";
 import { Table } from "react-bootstrap";
 import { Container, Nav, Button } from "react-bootstrap";
-import { Link, Router, BrowserRouter } from "react-router-dom";
-let ID;
+import { Link } from "react-router-dom";
+
 function Inbox() {
   let context = useContext(AuthContext);
 

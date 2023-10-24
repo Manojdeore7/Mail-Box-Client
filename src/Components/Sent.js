@@ -3,8 +3,7 @@ import AuthContext from "../store/AuthContext";
 import { Table } from "react-bootstrap";
 import { Container, Button, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { BrowserRouter } from "react-router-dom/cjs/react-router-dom.min";
-let ID;
+
 function Sent() {
   let context = useContext(AuthContext);
   let [value, setValue] = useState(false);
